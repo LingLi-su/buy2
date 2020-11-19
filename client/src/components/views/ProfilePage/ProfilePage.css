@@ -1,0 +1,303 @@
+.creatorIntro {
+    background-color: white;
+    width: 100%;
+    height: 250px;
+    margin: 0px auto;
+}
+/* .creatorIntro > * {
+    margin: 0 auto;
+    position: absolute;
+    left: calc(50% - 150px);
+    top: 250px;
+    position: relative;
+    top: 180px;
+} */
+
+.creatorIntroChangeBG {
+    float: right;
+    margin-top: 5px;
+    margin-right: 5px;
+    font-size: 0.6rem;
+}
+.creatorIntroChangeBG div,
+.creatorIntroChangeBG button {
+    background-color: rgba(255,255,255,0.7);
+    border: 1px solid black;
+    border-radius: 20px;
+    padding: 10px;
+    cursor: pointer;
+    width: auto !important;
+    height: auto !important;
+    text-align: center;
+    display: inline-block;
+}
+
+.creatorIntroContainer {
+    background: #FFFFFF;
+    width: 800px;
+    height: 180px;
+    position: absolute;
+    top: 200px;
+    left: calc(50% - 415px);
+    margin: 0 auto;
+    border: 15px solid rgba(255,255,255,0.60);
+    border-radius: 111.5px 111.5px 100px 100px;
+    display: flex;
+}
+
+/* .creatorPic {
+    position: absolute;
+    border-radius: 50%;
+    height: 110px;
+    left: 10%;
+    top: 10%;
+}
+
+.creatorName {
+    position: absolute;
+    top: 0%;
+    left: 30%;
+    font-family: Helvetica;
+    font-size: 21px;
+    color: #302E30;
+    letter-spacing: 0;
+}
+
+.creatorSns {
+    position: absolute;
+    top: 10%;
+    left: 30%;
+}
+
+.creatorTag {
+    position: absolute;
+    top: 11%;
+    left: 60%;
+    font-family: Helvetica;
+    font-size: 14px;
+    color: #241E13;
+    letter-spacing: 0;
+    border: 1px solid #241E13;
+    border-radius: 13px;
+    padding: 2px;
+}
+
+.creatorDescription {
+    position: absolute;
+    left: 30%;
+    top: 30%;
+    font-family: Helvetica;
+    font-size: 14px;
+    color: #302E30;
+    letter-spacing: 0;
+}
+
+
+
+.followingPlanets {
+    position: absolute;
+    left: 30%;
+    top: 60%;
+    
+    font-family: Helvetica;
+    font-size: 14px;
+    letter-spacing: 0;
+    border-radius: 4.5px;
+    border-radius: 3.5px;
+}
+
+.fansOnline {
+    position: absolute;
+    left: 55%;
+    top: 60%;
+
+    font-family: Helvetica;
+    font-size: 14px;
+    letter-spacing: 0;
+    border-radius: 4.5px;
+    border-radius: 3.5px;
+} */
+.creatorIntroLeft {
+    flex: 0 0 30%;
+    text-align: center;
+    padding: 20px;
+}
+.creatorIntroPic {
+    border-radius: 50%;
+    height: 110px;
+}
+.creatorIntroRight {
+    margin-top: 30px;
+    flex: 0 0 60%;
+}
+.planetShareLink{
+    overflow-wrap: break-word;
+    text-align: center;
+    color: rgb(87, 87, 87);
+    border-radius: 12px;
+    border: 0.5px solid rgba(151,151,153,0.5);
+}
+
+.planetShareButtonIn{
+    border-radius: 12px;
+    border: 0.5px solid rgba(151,151,153,0.5);
+    background-color: rgb(119, 141, 226);
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+}
+
+.creatorIntroTitle {
+    overflow: hidden;
+    height: 50px;
+}
+.creatorIntroName {
+    font-weight: bold;
+    font-size: 35px;
+    display: inline-block;
+}
+.creatorIntroTags {
+    float: right;
+    height: 50px;
+}
+.creatorIntroTags :not(:last-child) {
+    border: 1px solid #241E13;
+    border-radius: 13px;
+    padding: 2px;
+    margin:  11px 4px;
+    display: inline-block;
+}
+.creatorIntroSns>* {
+    padding: 5px;
+}
+.creatorIntroFollowingPlanets {
+    font-weight: bold;
+    padding: 5px 0;
+}
+.creatorIntroDescription span {
+    cursor: pointer;
+    font-weight: bold;
+    color: rgb(119, 141, 226);
+    border-bottom: 1px solid rgb(119, 141, 226);
+}
+
+
+
+
+
+@media screen and (max-width: 500px) {
+
+    .creatorIntroRight {
+        margin-top: 7px;
+        flex: 0 0 60%;
+    }
+    .planetShareLink{
+        overflow-wrap: break-word;
+        text-align: center;
+        color: rgb(87, 87, 87);
+        border-radius: 12px;
+        border: 0.5px solid rgba(151,151,153,0.5);
+        font-size: 8px;
+    }
+    
+    .planetShareButtonIn{
+        border-radius: 12px;
+        border: 0.5px solid rgba(151,151,153,0.5);
+        background-color: rgb(119, 141, 226);
+        color: rgb(255, 255, 255);
+        cursor: pointer;
+    }
+
+    .planetShareButtonText{
+        text-align: center;
+        margin-top: 15px !important;
+    }
+
+    .creatorIntro {
+        background-color: white;
+        width: 100%;
+        height: 224px;
+        margin: 0px auto;
+    }
+    .creatorIntroName {
+        font-weight: bold;
+        font-size: 16px;
+        display: inline-block;
+    }
+    .creatorIntroContainer {
+        background: rgb(255, 255, 255);
+        width: 300px;
+        height: 70px;
+        position: absolute;
+        top: 170px !important;
+        left: calc(15% - 30px);
+        margin: 0 auto;
+        border: 10px solid rgba(255,255,255,0.60);
+        border-radius: 70px;
+        display: flex;
+    }
+    .creatorIntroPic {
+        border-radius: 50%;
+        height: 70px;
+    }
+
+    .creatorIntroLeft {
+        flex: 0 0 30%;
+        text-align: center;
+        padding: 0px;
+    }
+
+    .creatorIntroTags :not(:last-child) {
+        border: 1px solid rgb(36, 30, 19);
+        border-radius: 12px;
+        padding: 2px;
+        margin: 0px 0px;
+        display: inline-block;
+        font-size: 0.1rem;
+    }
+
+    .creatorIntroTags {
+        float: right;
+        height: 50px;
+        position: absolute;
+        right: 0px;
+        top: 8px;
+        font-size: 0.6rem;
+    }
+
+    .creatorIntroSns>* {
+        padding: 5px;
+        font-size: 0.6rem;
+    }
+    .creatorIntroTitle {
+        overflow: hidden;
+        height: 18px;
+    }
+
+    .creatorIntroDescription{
+        font-size: 0.5rem;
+        font-family: Helvetica;
+        font-weight: normal;
+    }
+    .creatorIntroChangeBG div, 
+    .creatorIntroChangeBG button {
+        background-color: rgba(255,255,255,0.5);
+        border: 0px solid rgb(0, 0, 0);
+        border-radius: 12px;
+        padding: 3px;
+        font-size: 0.5rem;
+        border-radius: 20px;
+        cursor: pointer;
+        width: auto !important;
+        height: auto !important;
+        text-align: center;
+        display: inline-block;
+    }
+
+    .creatorIntroChangeBG {
+        float: right;
+        margin-top: 5px;
+        margin-right: 2px;
+    }
+
+
+}

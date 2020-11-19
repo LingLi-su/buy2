@@ -1,0 +1,134 @@
+.footBarBG {
+    /* position: fixed;
+    bottom: 0;
+    width: 100%; */
+    background-color: rgb(55,69,118);
+    /* margin-top: 50px; */
+    /* min-width: 900px; */
+    overflow: hidden;
+}
+.footBarContainer {
+    width: 70%;
+    /* min-width: 900px; */
+    margin: 0 auto;
+    padding: 50px 0;
+    display: flex;
+    color: white;
+    text-align: left;
+    overflow: hidden;
+}
+.footBarContainer>:first-child {
+    flex: 1 1 40%;
+}
+.footBarContainer>:not(:first-child) {
+    flex: 1 1 20%;
+}
+.footerLists {
+    list-style-type: none;
+    font-size: 13px;
+    font-family: Helvetica;
+    margin: 0;
+    text-decoration: none;
+}
+.footerLists>* {
+    margin: 5px 0;
+}
+
+.footerLists a{
+    width: 95%;
+    font-family: Helvetica;
+    font-size: 13px;
+    color: #FFFFFF;
+    letter-spacing: -0.3px;
+    text-decoration: none;
+}
+
+.footerLists>:first-child {
+    font-weight: bold;
+    opacity: 0.6;
+    margin-top: 0;
+}
+.footerLists a {
+    color: white;
+}
+
+
+
+@media screen and (max-width: 1200px) and (min-width: 1000px){
+
+    .footerLists {
+        padding-inline-start: 7px;
+        font-family: Helvetica;
+        font-size: 11px;
+    }
+   
+
+    .footerLists a{
+        width: 95%;
+        font-family: Helvetica;
+        font-size: 11px;
+        color: #FFFFFF;
+        letter-spacing: -0.3px;
+    }
+}
+    
+@media screen and (max-width: 1000px) and (min-width: 800px){
+
+    .footerLists {
+        padding-inline-start: 7px;
+        font-family: Helvetica;
+        font-size: 11px;
+    }
+   
+
+    .footerLists a{
+        width: 95%;
+        font-family: Helvetica;
+        font-size: 10px;
+        color: #FFFFFF;
+        letter-spacing: -0.3px;
+    }
+}
+    
+@media screen and (max-width: 800px) and (min-width: 500px){
+    .footerLists {
+        padding-inline-start: 7px;
+        font-family: Helvetica;
+        font-size: 10px;
+    }
+   
+
+    .footerLists a{
+        width: 95%;
+        font-family: Helvetica;
+        font-size: 9px;
+        color: #FFFFFF;
+        letter-spacing: -0.3px;
+    }
+
+}
+
+@media screen and (max-width: 500px){
+    .footBarContainer {
+        width: 95%;
+    }
+ 
+    .footBarContainer>:first-child {
+        flex: 1 1 10%;
+    }
+    .footerLists {
+        padding-inline-start: 7px;
+        font-family: Helvetica;
+        font-size: 10px;
+    }
+   
+
+    .footerLists a{
+        width: 95%;
+        font-family: Helvetica;
+        font-size: 8px;
+        color: #FFFFFF;
+        letter-spacing: -0.3px;
+    }
+
+}
