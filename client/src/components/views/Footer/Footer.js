@@ -7,7 +7,6 @@ import './Footer.css';
 function Footer() {
     return (
         <div >
-            <p> Happy Coding  <Icon type="smile" /></p>
             <div className='footBarBG'>
                 <div className='footBarContainer'>
                     <div>

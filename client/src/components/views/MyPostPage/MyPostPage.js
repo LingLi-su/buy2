@@ -31,7 +31,6 @@ function LandingPage() {
         }
         setPostSize(response.data.postSize);
       } else {
-        alert("Failed to fectch post datas");
       }
     });
   };
@@ -71,7 +70,7 @@ function LandingPage() {
       <div style={{ textAlign: "center" }}>
         <h2>
           {" "}
-          My Posts <Icon type="rocket" />{" "}
+          Posts{" "}
         </h2>
       </div>
 
@@ -103,11 +102,13 @@ function LandingPage() {
       <br />
       <br />
 
-      {PostSize >= Limit && (
-        <div style={{ display: "flex", justifyContent: "center" }}>
-          <button onClick={onLoadMore}>Load More</button>
-        </div>
-      )}
+      {
+      //   PostSize >= Limit && (
+      //   <div style={{ display: "flex", justifyContent: "center" }}>
+      //     <button onClick={onLoadMore}>Load More</button>
+      //   </div>
+      // )
+    }
     </div>
   );
 }

@@ -11,7 +11,6 @@ import PostPage from "./views/PostPage/PostPage";
 import CartPage from "./views/CartPage/CartPage";
 import HistoryPage from "./views/HistoryPage/HistoryPage";
 import ProfilePage from "./views/ProfilePage/ProfilePage";
-import MyPostPage from "./views/MyPostPage/MyPostPage";
 import DetailUserPage from "./views/DetailUserPage/DetailUserPage";
 import FollowsPostPage from "./views/FollowsPostPage/FollowsPostPage"
 import LikedPage from "./views/LikedPage/LikedPage";
@@ -45,7 +44,6 @@ function App() {
           <Route exact path="/user/cart" component={Auth(CartPage, true)} />
           <Route exact path="/history" component={Auth(HistoryPage, true)} />
           <Route exact path="/user/posts" component={Auth(HistoryPage, true)} />
-          <Route exact path="/user/mypost" component={Auth(MyPostPage, true)} />
           <Route
             exact
             path="/user/myprofile"

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Axios from "axios";
 import { Icon, Col, Card, Row, Avatar } from "antd";
+import LikeDislikes from './Sections/LikeDislikes'
 
 import ImageSlider from "../../utils/ImageSlider";
 
@@ -29,7 +30,6 @@ function LandingPage() {
             //     setFollows([...Follows, followsArray[i].userTo])
             // }
             } else {
-              alert("Failed to fectch post datas");
             }
           });
           followsArray.forEach((follow) => {
@@ -45,7 +45,6 @@ function LandingPage() {
                     return [...prev, response.data.posts]
                 })
             }else {
-                            alert("Failed to fectch post datas");
                           }
         })
             // setFollows((prev) =>{
@@ -115,7 +114,7 @@ function LandingPage() {
             avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
             description={`$${post.price}`} 
           />
-          <Icon type="heart" />
+          <LikeDislikes post postId={post._id} userId={localStorage.getItem('userId')}/>
         </Card>
       </Col>
     );
@@ -127,7 +126,7 @@ function LandingPage() {
       <div style={{ textAlign: "center" }}>
         <h2>
           {" "}
-          Let's OOTD <Icon type="rocket" />{" "}
+          Newsfeed{" "}
         </h2>
       </div>
 
@@ -140,7 +139,7 @@ function LandingPage() {
           margin: "1rem auto",
         }}
       ></div>
-      {Posts.length === 0 ? (
+      {Posts.length == 0 ? (
         <div
           style={{
             display: "flex",
@@ -149,7 +148,7 @@ function LandingPage() {
             alignItems: "center",
           }}
         >
-          <h2>{Follows}</h2>
+          <h2>You have not followed anyone...</h2>
         </div>
       ) : (
         <div>

@@ -4,6 +4,8 @@ import { Icon, Col, Card, Row, Avatar } from "antd";
 import Comments from './Sections/Comments';
 import { TagOutlined } from "@ant-design/icons";
 import Draggable, { DraggableCore } from "react-draggable";
+import LikeDislikes from './Sections/LikeDislikes'
+
 
 import PostImage from "./Sections/PostImage";
 // import PostInfo from "./Sections/PostInfo";
@@ -56,7 +58,9 @@ function PostPage(props) {
     Axios.post(`/api/users/userInfo`, { userId: authorId }).then((response) => {
       console.log(authorId);
       console.log(response.data);
+      if(response.data.success){
       setAuthor(response.data.userInfo.name);
+      }
     });
 
   
@@ -85,10 +89,10 @@ function PostPage(props) {
   },[PhotoId])
   const displayLabel = Label.map((item) => {
     return (
-        <Draggable defaultPosition={{x: item.x, y: item.y}}>
+        <Draggable defaultPosition={{x: item.x, y: item.y}} disabled="true">
             <div className="drag-box">
         <TagOutlined id="imhandle" />
-        <a href={item.url}>Link</a>
+        <a href={item.url} target="_blank">Link</a>
         </div>
         </Draggable>
 
@@ -100,9 +104,19 @@ function PostPage(props) {
         )
   })
 
-  const addToCartHandler = (postId) => {
-    dispatch(addToCart(postId));
-  };
+  const tagLists = Label.length > 1 ? Label.map((item, index) => {
+    return (
+      <div>
+
+      <a href={item.url}>tag{index+1}</a>
+      </div>
+    )
+  
+  }) : 'No tags for this Post'
+
+  // const addToCartHandler = (postId) => {
+  //   dispatch(addToCart(postId));
+  // };
 
   const updateComment = (newComment) => {
     setCommentLists(CommentLists.concat(newComment))
@@ -127,13 +141,14 @@ function PostPage(props) {
         // <PostImage detail={Post} />
     }
 
-    
+    <div id = "postDetailBody">
       <div
       style={{
         width: "700px",
         height: "500px",
       }}
     >
+
     <div style={{position:"relative" }}>
           <img
             className="ppp"
@@ -150,7 +165,7 @@ function PostPage(props) {
         </div>
     
 
-
+      <div id = "postDetailCategory">
       <div class="card">
         <div class="container">
           <h4 className="cardTopic"><b>Creator Name</b></h4> 
@@ -164,15 +179,19 @@ function PostPage(props) {
       </div>
       <div class="card">
         <div class="container">
-          <h4><b>tags</b></h4> 
-          <h4><b>tags</b></h4> 
-          <h4><b>tags</b></h4> 
+        <h4><b>Tags</b></h4>
+        {tagLists}
         </div>
       </div>
       <div class="card">
         <div class="container">
-          <h4><b>relevant tags</b></h4> 
+        <h4><b>Likes</b></h4>
+        <LikeDislikes post postId={postId} userId={localStorage.getItem('userId')}/>
+
         </div>
+      </div>
+
+      </div>
       </div>
       <Comments CommentLists = {CommentLists} postId = {Post._id} refreshFunction={updateComment}/>
 

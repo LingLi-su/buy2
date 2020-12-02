@@ -37,7 +37,7 @@ function Comments(props) {
     return (
         <div>
             <br />
-            <p> replies</p>
+            <p> Replies</p>
             <hr />
             {/* Comment Lists  */}
             {console.log(props.CommentLists)}

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Subscriber from "./Sections/Subscriber";
 import { Icon, Col, Card, Row } from "antd";
 import ImageSlider from "../../utils/ImageSlider";
+import  LikeDislikes from './Sections/LikeDislikes';
 import axios from "axios";
 
 
@@ -59,6 +60,8 @@ function DetailUserPage(props) {
           }
         >
           <Meta title={post.title} description={`$${post.price}`} />
+          <LikeDislikes post postId={post._id} userId={localStorage.getItem('userId')}/>
+
         </Card>
       </Col>
     );
@@ -71,6 +74,9 @@ function DetailUserPage(props) {
         <h2>
           {Name}
         </h2>
+        {userId !== userTo ? (
+          <Subscriber userTo={userId} userFrom={userTo} />
+        ) : null}
       </div>
 
 
@@ -100,9 +106,7 @@ function DetailUserPage(props) {
       <br />
       <br />
 
-      {userId !== userTo ? (
-        <Subscriber userTo={userId} userFrom={userTo} />
-      ) : null}
+      
     </div>
   );
 }

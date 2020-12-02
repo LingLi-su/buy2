@@ -42,13 +42,13 @@ function RegisterPage(props) {
       initialValues={{
         email: '',
         lastName: '',
-        name: '',
+        firstName: '',
         password: '',
         confirmPassword: ''
       }}
       validationSchema={Yup.object().shape({
-        name: Yup.string()
-          .required('Name is required'),
+        firstName: Yup.string()
+          .required('First Name is required'),
         lastName: Yup.string()
           .required('Last Name is required'),
         email: Yup.string()
@@ -67,7 +67,7 @@ function RegisterPage(props) {
           let dataToSubmit = {
             email: values.email,
             password: values.password,
-            name: values.name,
+            firstname: values.firstname,
             lastname: values.lastname,
             image: `http://gravatar.com/avatar/${moment().unix()}?d=identicon`
           };
@@ -76,7 +76,8 @@ function RegisterPage(props) {
             if (response.payload.success) {
               props.history.push("/login");
             } else {
-              alert(response.payload.err.errmsg)
+              // console.log(response.payload)
+              alert("Sorry, This Email Already Exists")
             }
           })
 
@@ -101,24 +102,26 @@ function RegisterPage(props) {
             <h2>Sign up</h2>
             <Form style={{ minWidth: '375px' }} {...formItemLayout} onSubmit={handleSubmit} >
 
-              <Form.Item required label="Name">
+              <Form.Item required label="First Name" hasFeedback 
+              validateStatus= {touched.firstName ? (errors.firstName && touched.firstName ? "error" : 'success') : undefined}>
                 <Input
-                  id="name"
-                  placeholder="Enter your name"
+                  id="firstName"
+                  placeholder="Enter your First Name"
                   type="text"
-                  value={values.name}
+                  value={values.firstName}
                   onChange={handleChange}
                   onBlur={handleBlur}
                   className={
-                    errors.name && touched.name ? 'text-input error' : 'text-input'
+                    errors.firstName && touched.firstName ? 'text-input error' : 'text-input'
                   }
                 />
-                {errors.name && touched.name && (
-                  <div className="input-feedback">{errors.name}</div>
+                {errors.firstName && touched.firstName && (
+                  <div className="input-feedback">{errors.firstName}</div>
                 )}
               </Form.Item>
 
-              <Form.Item required label="Last Name">
+              <Form.Item required label="Last Name" hasFeedback 
+              validateStatus= {touched.lastName ? (errors.lastName && touched.lastName ? "error" : 'success') : undefined}>
                 <Input
                   id="lastName"
                   placeholder="Enter your Last Name"
@@ -135,7 +138,8 @@ function RegisterPage(props) {
                 )}
               </Form.Item>
 
-              <Form.Item required label="Email" hasFeedback validateStatus={errors.email && touched.email ? "error" : 'success'}>
+              <Form.Item required label="Email" hasFeedback 
+              validateStatus= {touched.email ? (errors.email && touched.email ? "error" : 'success') : undefined}>
                 <Input
                   id="email"
                   placeholder="Enter your Email"
@@ -152,7 +156,8 @@ function RegisterPage(props) {
                 )}
               </Form.Item>
 
-              <Form.Item required label="Password" hasFeedback validateStatus={errors.password && touched.password ? "error" : 'success'}>
+              <Form.Item required label="Password" hasFeedback 
+              validateStatus={touched.password ? (errors.password && touched.password ? "error" : 'success') : undefined}>
                 <Input
                   id="password"
                   placeholder="Enter your password"
@@ -169,7 +174,8 @@ function RegisterPage(props) {
                 )}
               </Form.Item>
 
-              <Form.Item required label="Confirm" hasFeedback>
+              <Form.Item required label="Confirm" hasFeedback 
+              validateStatus= {touched.confirmPassword ? (errors.confirmPassword && touched.confirmPassword ? "error" : 'success') : undefined}>
                 <Input
                   id="confirmPassword"
                   placeholder="Enter your confirmPassword"

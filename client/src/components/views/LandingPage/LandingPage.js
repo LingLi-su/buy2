@@ -113,6 +113,7 @@ function LandingPage() {
     getPosts(variables);
   };
 
+
   const renderCards = Posts.map((post, index) => {
     return (
       <Col lg={6} md={8} xs={24}>
@@ -121,11 +122,12 @@ function LandingPage() {
           cover={
             <a href={`/post/${post._id}`}>
               {" "}
-              <ImageSlider images={post.images} />
+              <ImageSlider images={post.images}  />
             </a>
           }
         >
           <Meta 
+            onClick={() => <a href={`/post/${post._id}`}/>}
             title={post.title} 
             avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
             description={`$${post.price}`} 
@@ -141,7 +143,7 @@ function LandingPage() {
       <div style={{ textAlign: "center" }}>
         <h2>
           {" "}
-          Let's OOTD <Icon type="rocket" />{" "}
+          All Posts{" "}
         </h2>
       </div>
 

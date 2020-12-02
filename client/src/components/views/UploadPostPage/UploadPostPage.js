@@ -25,7 +25,7 @@ const Continents = [
 function UploadPostPage(props) {
   const [TitleValue, setTitleValue] = useState("");
   const [DescriptionValue, setDescriptionValue] = useState("");
-  const [PriceValue, setPriceValue] = useState(0);
+  const [PriceValue, setPriceValue] = useState();
   const [ContinentValue, setContinentValue] = useState(1);
   const [PhotoId, setPhotoId] = useState("");
 
@@ -57,7 +57,9 @@ function UploadPostPage(props) {
   const onSubmit = (event) => {
     event.preventDefault();
 
-    if (!TitleValue || !DescriptionValue || !PriceValue || !Images) {
+    
+
+    if (!TitleValue || !DescriptionValue || !PriceValue || Images.length < 1) {
       return alert("fill all the fields first!");
     }
 
@@ -87,6 +89,7 @@ function UploadPostPage(props) {
     //     alert("Failed to upload Post");
     //   }
     // });
+    
   };
 
   
@@ -102,7 +105,7 @@ function UploadPostPage(props) {
 
       
 
-      <Form onSubmit={onSubmit}>
+      <Form>
         {/* DropZone */}
         <FileUpload refreshFunction={updateImages} refreshId ={updatePhotoId}/>
         <br />
@@ -120,7 +123,7 @@ function UploadPostPage(props) {
         <br />
         <br />
 
-        <Button onClick={onSubmit}>Submit</Button>
+        <Button type ="button" onClick={onSubmit}>Submit</Button>
       </Form>
 
     </div>

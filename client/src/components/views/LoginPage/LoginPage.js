@@ -84,7 +84,8 @@ function LoginPage(props) {
             <Title level={2}>Log In</Title>
             <form onSubmit={handleSubmit} style={{ width: '350px' }}>
 
-              <Form.Item required>
+              <Form.Item required hasFeedback 
+              validateStatus= {touched.email ? (errors.email && touched.email ? "error" : 'success') : undefined}>
                 <Input
                   id="email"
                   prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
@@ -102,7 +103,8 @@ function LoginPage(props) {
                 )}
               </Form.Item>
 
-              <Form.Item required>
+              <Form.Item required hasFeedback 
+              validateStatus= {touched.password ? (errors.password && touched.password ? "error" : 'success') : undefined}>
                 <Input
                   id="password"
                   prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
@@ -125,10 +127,12 @@ function LoginPage(props) {
               )}
 
               <Form.Item>
-                <Checkbox id="rememberMe" onChange={handleRememberMe} checked={rememberMe} >Remember me</Checkbox>
-                <a className="login-form-forgot" href="/reset_user" style={{ float: 'right' }}>
-                  forgot password
-                  </a>
+                {
+                //   <Checkbox id="rememberMe" onChange={handleRememberMe} checked={rememberMe} >Remember me</Checkbox>
+                // <a className="login-form-forgot" href="/reset_user" style={{ float: 'right' }}>
+                //   forgot password
+                //   </a> 
+                }
                 <div>
                   <Button type="primary" htmlType="submit" className="login-form-button" style={{ minWidth: '100%' }} disabled={isSubmitting} onSubmit={handleSubmit}>
                     Log in

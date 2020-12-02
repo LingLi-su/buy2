@@ -16,18 +16,18 @@ function LeftMenu(props) {
           <Menu.Item key="profile">
             <Link to="/user/myprofile">My Profile</Link>
           </Menu.Item>
-          <Menu.Item key="mypost">
-            <Link to="/user/mypost">My Posts</Link>
-          </Menu.Item>
           <Menu.Item key="newsfeed">
             <Link to="/follow/post">Newsfeed</Link>
           </Menu.Item>
           <Menu.Item key="likedpost">
             <Link to="/user/likedpage">Liked Post</Link>
           </Menu.Item>
-          <Menu.Item key="test">
-          <Link to="/test">test</Link>
-          </Menu.Item>
+          {
+          // <Menu.Item key="test">
+          // <Link to="/test">test</Link>
+          // </Menu.Item>
+          }
+
         </MenuItemGroup>
       </SubMenu>
     </Menu>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Axios from "axios";
 import { Icon, Col, Card, Row, Avatar } from "antd";
-
+import LikeDislikes from './Sections/LikeDislikes'
 import ImageSlider from "../../utils/ImageSlider";
 
 
@@ -24,7 +24,6 @@ function LandingPage() {
           // setLikes(response.data.liked);
           LikesArray = response.data.liked;
         } else {
-            alert('Failed to get liked post list')
         }
     })
     
@@ -35,10 +34,12 @@ function LandingPage() {
       .then(response => {
       if (response.data.success) {
         console.log(response.data.postInfo);
+        if(response.data.postInfo){
         setPosts(prev => {
           console.log(prev)
           return [...prev, response.data.postInfo]
       })
+    }
       } else {
           alert('Failed to get liked post')
       }
@@ -75,7 +76,7 @@ function LandingPage() {
             avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
             description={`$${post.price}`} 
           />
-          <Icon type="heart" />
+          <LikeDislikes post postId={post._id} userId={localStorage.getItem('userId')}/>
         </Card>
       </Col>
     );
@@ -87,7 +88,7 @@ function LandingPage() {
       <div style={{ textAlign: "center" }}>
         <h2>
           {" "}
-          Liked Posts <Icon type="rocket" />{" "}
+          Liked Posts{" "}
         </h2>
       </div>
 
@@ -109,7 +110,7 @@ function LandingPage() {
             alignItems: "center",
           }}
         >
-          <h2>jjj</h2>
+          <h2>You have not liked any posts...</h2>
         </div>
       ) : (
         <div>

@@ -33,9 +33,7 @@ function RightMenu(props) {
   } else {
     return (
       <Menu mode={props.mode}>
-        <Menu.Item key="history">
-          <a href="/history">History</a>
-        </Menu.Item>
+        
 
         <Menu.Item key="upload">
           <a href="/post/upload">Upload</a>
@@ -50,6 +48,10 @@ function RightMenu(props) {
 }
 
 export default withRouter(RightMenu);
+
+// <Menu.Item key="history">
+//           <a href="/history">History</a>
+//         </Menu.Item>
 
 // <Menu.Item key="cart" style={{ paddingBottom: 3 }}>
 //           <Badge count={user.userData && user.userData.cart.length}>
