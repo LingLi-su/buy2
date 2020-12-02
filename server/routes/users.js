@@ -74,14 +74,17 @@ router.get("/logout", auth, (req, res) => {
   );
 });
 
-router.post("/userInfo", auth, (req, res) => {
+router.post("/userInfo", (req, res) => {
   console.log("mmmmmmm");
   console.log(req.body);
   console.log("mmmmmmm");
 
   User.findOne({ _id: req.body.userId }, (err, user) => {
     if (err) return res.json({ success: false, err });
-    console.log(req.body.userId);
+    console.log('userrrrr')
+    console.log(user);
+    console.log('userrrrr')
+
     return res.status(200).send({
       success: true,
       userInfo: user,

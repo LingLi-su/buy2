@@ -67,13 +67,14 @@ function RegisterPage(props) {
           let dataToSubmit = {
             email: values.email,
             password: values.password,
-            firstname: values.firstname,
-            lastname: values.lastname,
+            name: values.firstName,
+            lastname: values.lastName,
             image: `http://gravatar.com/avatar/${moment().unix()}?d=identicon`
           };
 
           dispatch(registerUser(dataToSubmit)).then(response => {
             if (response.payload.success) {
+              console.log(dataToSubmit);
               props.history.push("/login");
             } else {
               // console.log(response.payload)

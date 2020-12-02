@@ -54,11 +54,13 @@ function PostPage(props) {
                 alert('Failed to get comment Info')
             }
         })
-
+      
+      
     Axios.post(`/api/users/userInfo`, { userId: authorId }).then((response) => {
       console.log(authorId);
       console.log(response.data);
       if(response.data.success){
+        // console.log(response.data)
       setAuthor(response.data.userInfo.name);
       }
     });
@@ -89,7 +91,7 @@ function PostPage(props) {
   },[PhotoId])
   const displayLabel = Label.map((item) => {
     return (
-        <Draggable defaultPosition={{x: item.x, y: item.y}} disabled="true">
+        <Draggable defaultPosition={{x: item.x, y: item.y}} disabled={true}>
             <div className="drag-box">
         <TagOutlined id="imhandle" />
         <a href={item.url} target="_blank">Link</a>
@@ -104,7 +106,7 @@ function PostPage(props) {
         )
   })
 
-  const tagLists = Label.length > 1 ? Label.map((item, index) => {
+  const tagLists = Label.length > 0 ? Label.map((item, index) => {
     return (
       <div>
 
