@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import {Icon} from 'antd';
-import logo from '../../../assets/logo.png';
+import logo from '../../../assets/logo.svg';
 import './Footer.css';
 
 function Footer() {
@@ -29,11 +29,10 @@ function Footer() {
                     <div>
                         <ul className='footerLists'>
                             <li>CATEGORY</li>
-                            <li><Link to='/youPlanets/topPlanets'>Education</Link></li>
-                            <li><Link to='/youPlanets/topPlanets'>Entertainment</Link></li>
-                            <li><Link to='/youPlanets/topPlanets'>Tech &amp; Science</Link></li>
-                            <li><Link to='/youPlanets/topPlanets'>Business</Link></li>
-                            <li><Link to='/youPlanets/topPlanets'>Sports</Link></li>
+                            <li><Link to='/buyKitList/summer'>Summer</Link></li>
+                            <li><Link to='/buyKitList/winter'>Winter</Link></li>
+                            <li><Link to='/buyKitList/fall'>Fall</Link></li>
+                            <li><Link to='/buyKitList/spring'>Spring</Link></li>
                         </ul>
                     </div>
                 </div>
