@@ -44,20 +44,36 @@ router.post("/login", (req, res) => {
         loginSuccess: false,
         message: "Auth failed, email not found",
       });
-
-    user.comparePassword(req.body.password, (err, isMatch) => {
-      if (!isMatch)
+    if (req.body.oauth) {
+      console.log(req.body.password);
+      console.log(user.password);
+      if (req.body.password == user.password) {
+        user.generateToken((err, user) => {
+          if (err) return res.status(400).send(err);
+          res.cookie("w_authExp", user.tokenExp);
+          res.cookie("w_auth", user.token).status(200).json({
+            loginSuccess: true,
+            userId: user._id,
+          });
+        });
+      } else {
         return res.json({ loginSuccess: false, message: "Wrong password" });
+      }
+    } else {
+      user.comparePassword(req.body.password, (err, isMatch) => {
+        if (!isMatch)
+          return res.json({ loginSuccess: false, message: "Wrong password" });
 
-      user.generateToken((err, user) => {
-        if (err) return res.status(400).send(err);
-        res.cookie("w_authExp", user.tokenExp);
-        res.cookie("w_auth", user.token).status(200).json({
-          loginSuccess: true,
-          userId: user._id,
+        user.generateToken((err, user) => {
+          if (err) return res.status(400).send(err);
+          res.cookie("w_authExp", user.tokenExp);
+          res.cookie("w_auth", user.token).status(200).json({
+            loginSuccess: true,
+            userId: user._id,
+          });
         });
       });
-    });
+    }
   });
 });
 
@@ -72,6 +88,9 @@ router.get("/logout", auth, (req, res) => {
       });
     }
   );
+  res.cookie("connect.sid", "");
+  res.cookie("w_authExp", "");
+  res.cookie("w_auth", "").status(200);
 });
 
 router.post("/userInfo", (req, res) => {
@@ -81,9 +100,9 @@ router.post("/userInfo", (req, res) => {
 
   User.findOne({ _id: req.body.userId }, (err, user) => {
     if (err) return res.json({ success: false, err });
-    console.log('userrrrr')
+    console.log("userrrrr");
     console.log(user);
-    console.log('userrrrr')
+    console.log("userrrrr");
 
     return res.status(200).send({
       success: true,
@@ -288,12 +307,12 @@ router.get("/getHistory", auth, (req, res) => {
   });
 });
 
-router.get("/getLiked", auth, (req,res) => {
+router.get("/getLiked", auth, (req, res) => {
   User.findOne({ _id: req.user._id }, (err, doc) => {
     let liked = doc.liked;
     if (err) return res.status(400).send(err);
     return res.status(200).json({ success: true, liked });
   });
-})
+});
 
 module.exports = router;

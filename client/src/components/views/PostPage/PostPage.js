@@ -1,17 +1,16 @@
 import React, { useEffect, useState } from "react";
 import Axios from "axios";
 import { Icon, Col, Card, Row, Avatar } from "antd";
-import Comments from './Sections/Comments';
+import Comments from "./Sections/Comments";
 import { TagOutlined } from "@ant-design/icons";
 import Draggable, { DraggableCore } from "react-draggable";
-import LikeDislikes from './Sections/LikeDislikes'
-
+import LikeDislikes from "./Sections/LikeDislikes";
 
 import PostImage from "./Sections/PostImage";
 // import PostInfo from "./Sections/PostInfo";
 import { addToCart } from "../../../_actions/user_actions";
 import { useDispatch } from "react-redux";
-import './PostPage.css';
+import "./PostPage.css";
 
 const { Meta } = Card;
 function PostPage(props) {
@@ -20,12 +19,9 @@ function PostPage(props) {
   const [Post, setPost] = useState([]);
   const [Author, setAuthor] = useState("");
   const [AuthorId, setAuthorId] = useState("");
-  const [CommentLists, setCommentLists] = useState([])
+  const [CommentLists, setCommentLists] = useState([]);
   const [Label, setLabel] = useState([]);
   const [PhotoId, setPhotoId] = useState("");
-
-
-
 
   useEffect(async () => {
     let authorId = null;
@@ -35,97 +31,95 @@ function PostPage(props) {
         authorId = response.data[0].writer._id;
         setAuthorId(response.data[0].writer._id);
         setPost(response.data[0]);
-        console.log('innnnnnnnnnnnn')
-        console.log(response.data[0].photoId)
+        console.log("innnnnnnnnnnnn");
+        console.log(response.data[0].photoId);
         console.log(response.data[0]);
 
-        console.log('innnnnnnnnnnnn')
+        console.log("innnnnnnnnnnnn");
 
         setPhotoId(response.data[0].photoId);
       }
     );
 
-    Axios.post('/api/comment/getComments', {postId})
-        .then(response => {
-            if (response.data.success) {
-                console.log('response.data.comments',response.data.comments)
-                setCommentLists(response.data.comments)
-            } else {
-                alert('Failed to get comment Info')
-            }
-        })
-      
-      
+    Axios.post("/api/comment/getComments", { postId }).then((response) => {
+      if (response.data.success) {
+        console.log("response.data.comments", response.data.comments);
+        setCommentLists(response.data.comments);
+      } else {
+        alert("Failed to get comment Info");
+      }
+    });
+
     Axios.post(`/api/users/userInfo`, { userId: authorId }).then((response) => {
       console.log(authorId);
       console.log(response.data);
-      if(response.data.success){
+      if (response.data.success) {
         // console.log(response.data)
-      setAuthor(response.data.userInfo.name);
+        setAuthor(response.data.userInfo.name);
       }
     });
-
-  
-    
   }, []);
 
-
-  useEffect(()=> {
+  useEffect(() => {
     let variable = {
-      photoId: PhotoId
-    }
-  
-  console.log('photooooooooo')
-  console.log(variable)
-  console.log('photooooooooo')
+      photoId: PhotoId,
+    };
+
+    console.log("photooooooooo");
+    console.log(variable);
+    console.log("photooooooooo");
 
     Axios.post("/api/photo/getAllTag", variable).then((response) => {
       if (response.data.success) {
-        console.log(response.data.tags)
+        console.log(response.data.tags);
         setLabel(response.data.tags);
-        console.log(Label)
+        console.log(Label);
       } else {
-          console.log('sorry');
+        console.log("sorry");
       }
     });
-  },[PhotoId])
+  }, [PhotoId]);
   const displayLabel = Label.map((item) => {
     return (
-        <Draggable defaultPosition={{x: item.x, y: item.y}} disabled={true}>
-            <div className="drag-box">
-        <TagOutlined id="imhandle" />
-        <a href={item.url} target="_blank">Link</a>
+      <Draggable defaultPosition={{ x: item.x, y: item.y }} disabled={true}>
+        <div className="drag-box">
+          <TagOutlined id="imhandle" />
+          <a href={item.url} target="_blank">
+            Link
+          </a>
         </div>
-        </Draggable>
+      </Draggable>
 
-    //     <Draggable defaultPosition={{x: item.x, y: item.y}}>
-    //     <form>
-    //     <Input style ={{zIndex:"2", position:"absolute"}} value={item.url} />
-    //   </form>
-    //   </Draggable>
-        )
-  })
+      //     <Draggable defaultPosition={{x: item.x, y: item.y}}>
+      //     <form>
+      //     <Input style ={{zIndex:"2", position:"absolute"}} value={item.url} />
+      //   </form>
+      //   </Draggable>
+    );
+  });
 
-  const tagLists = Label.length > 0 ? Label.map((item, index) => {
-    return (
-      <div>
-
-      <a href={item.url}>tag{index+1}</a>
-      </div>
-    )
-  
-  }) : 'No tags for this Post'
+  const tagLists =
+    Label.length > 0
+      ? Label.map((item, index) => {
+          return (
+            <div>
+              <a href={item.url}>tag{index + 1}</a>
+            </div>
+          );
+        })
+      : "No tags for this Post";
 
   // const addToCartHandler = (postId) => {
   //   dispatch(addToCart(postId));
   // };
 
   const updateComment = (newComment) => {
-    setCommentLists(CommentLists.concat(newComment))
-}
+    setCommentLists(CommentLists.concat(newComment));
+  };
 
   return (
-    <div className="postPage"
+    <div
+      className="postPage"
       // style={{ width: "100%", padding: "3rem 4rem" }}
     >
       {/* <div 
@@ -141,64 +135,75 @@ function PostPage(props) {
 
       {
         // <PostImage detail={Post} />
-    }
+      }
 
-    <div id = "postDetailBody">
-      <div
-      style={{
-        width: "700px",
-        height: "500px",
-      }}
-    >
-
-    <div style={{position:"relative" }}>
-          <img
-            className="ppp"
-            style={{ minWidth: "300px", width: "700px", height: "500px", position:"absolute" }}
-            // src={`http://localhost:5000/${image}`}
-            src={`${Post.images}`}
-
-        
-          >
-          </img>
-          {displayLabel}
-
+      <div id="postDetailBody">
+        <div
+          style={{
+            width: "700px",
+            height: "500px",
+          }}
+        >
+          <div style={{ position: "relative" }}>
+            <img
+              className="ppp"
+              style={{
+                minWidth: "300px",
+                width: "700px",
+                height: "500px",
+                position: "absolute",
+              }}
+              // src={`http://localhost:5000/${image}`}
+              src={`${Post.images}`}
+            ></img>
+            {displayLabel}
+          </div>
         </div>
-        </div>
-    
 
-      <div id = "postDetailCategory">
-      <div class="card">
-        <div class="container">
-          <h4 className="cardTopic"><b>Creator Name</b></h4> 
-          <Meta 
-            avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
-          />
-          <a href={`/user/${AuthorId}`}>        {Author}
-
-</a> 
+        <div id="postDetailCategory">
+          <div className="card">
+            <div className="container">
+              <h4 className="cardTopic">
+                <b>Creator Name</b>
+              </h4>
+              <Meta
+                avatar={
+                  <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
+                }
+              />
+              <a href={`/user/${AuthorId}`}> {Author}</a>
+            </div>
+          </div>
+          <div className="card">
+            <div className="container">
+              <h4>
+                <b>Tags</b>
+              </h4>
+              {tagLists}
+            </div>
+          </div>
+          <div className="card">
+            <div className="container">
+              <h4>
+                <b>Likes</b>
+              </h4>
+              <LikeDislikes
+                post
+                postId={postId}
+                userId={localStorage.getItem("userId")}
+              />
+            </div>
+          </div>
         </div>
       </div>
-      <div class="card">
-        <div class="container">
-        <h4><b>Tags</b></h4>
-        {tagLists}
-        </div>
-      </div>
-      <div class="card">
-        <div class="container">
-        <h4><b>Likes</b></h4>
-        <LikeDislikes post postId={postId} userId={localStorage.getItem('userId')}/>
+      <Comments
+        CommentLists={CommentLists}
+        postId={Post._id}
+        refreshFunction={updateComment}
+      />
 
-        </div>
-      </div>
-
-      </div>
-      </div>
-      <Comments CommentLists = {CommentLists} postId = {Post._id} refreshFunction={updateComment}/>
-
-        {/* <PostInfo addToCart={addToCartHandler} detail={Post} /> */}
-        {/* <Descriptions.Item label="Description">
+      {/* <PostInfo addToCart={addToCartHandler} detail={Post} /> */}
+      {/* <Descriptions.Item label="Description">
           {" "}
           <h1>topic</h1>
           {Post.description}

@@ -16,6 +16,13 @@ const config = require("./config/key");
 
 const mongoose = require("mongoose");
 
+const passport = require("passport");
+const passportStrategy = require("./oauthConfig/passportController");
+const oauthkey = require("./oauthConfig/key");
+const session = require("express-session");
+
+const User = require("./models/User");
+
 const connect = mongoose
   .connect(config.mongoURI, {
     useNewUrlParser: true,
@@ -26,20 +33,52 @@ const connect = mongoose
   .then(() => console.log("MongoDB Connected..."))
   .catch((err) => console.log(err));
 
-app.use(cors());
+// app.use(cors());
+
+app.use(cors({ origin: "http://localhost:8080", credentials: true }));
+
+app.use(
+  session({
+    secret: oauthkey.session.cookieKey,
+    resave: false,
+    saveUninitialized: false,
+    maxAge: 24 * 60 * 60 * 1000,
+  })
+);
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cookieParser());
 
+app.get(
+  "/auth/google",
+  passport.authenticate("google", { scope: ["profile", "email"] })
+);
+
+app.get(
+  "/auth/google/redirect",
+  passport.authenticate("google", { failureRedirect: "/login" }),
+  (req, res) => {
+    // Successful authentication, redirect home.
+    // console.log(res);
+    res.redirect("http://localhost:8080");
+    // res.send("/api/users/login");
+  }
+);
+
+app.get("/getuser", (req, res) => {
+  res.send(req.user);
+});
+
 app.use("/api/users", require("./routes/users"));
 app.use("/api/post", require("./routes/post"));
 app.use("/api/subscribe", require("./routes/subscribe"));
-app.use('/api/like', require('./routes/like'));
-app.use('/api/comment', require('./routes/comment'));
-app.use('/api/photo', require('./routes/photo'));
-
-
+app.use("/api/like", require("./routes/like"));
+app.use("/api/comment", require("./routes/comment"));
+app.use("/api/photo", require("./routes/photo"));
 
 //use this to show the image you have in node js server to client (react js)
 //https://stackoverflow.com/questions/48914987/send-image-path-from-node-js-express-server-to-react-client

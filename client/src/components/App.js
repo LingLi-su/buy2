@@ -12,10 +12,9 @@ import CartPage from "./views/CartPage/CartPage";
 import HistoryPage from "./views/HistoryPage/HistoryPage";
 import ProfilePage from "./views/ProfilePage/ProfilePage";
 import DetailUserPage from "./views/DetailUserPage/DetailUserPage";
-import FollowsPostPage from "./views/FollowsPostPage/FollowsPostPage"
+import FollowsPostPage from "./views/FollowsPostPage/FollowsPostPage";
 import LikedPage from "./views/LikedPage/LikedPage";
-import TestPage from "./views/TestPage/TestPage";
-
+// import TestPage from "./views/TestPage/TestPage";
 
 function App() {
   return (
@@ -31,15 +30,11 @@ function App() {
             path="/post/upload"
             component={Auth(UploadPostPage, true)}
           />
-          <Route
-            exact
-            path="/post/:postId"
-            component={Auth(PostPage, null)}
-          />
+          <Route exact path="/post/:postId" component={Auth(PostPage, null)} />
           <Route
             exact
             path="/user/likedpage"
-            component={Auth(LikedPage,true)}
+            component={Auth(LikedPage, true)}
           />
           <Route exact path="/user/cart" component={Auth(CartPage, true)} />
           <Route exact path="/history" component={Auth(HistoryPage, true)} />
@@ -57,14 +52,8 @@ function App() {
           <Route
             exact
             path="/follow/post"
-            component={Auth(FollowsPostPage,true)}
+            component={Auth(FollowsPostPage, true)}
           />
-          <Route
-            exact
-            path="/test"
-            component={Auth(TestPage,null)}
-          />
-          
         </Switch>
       </div>
       <Footer />

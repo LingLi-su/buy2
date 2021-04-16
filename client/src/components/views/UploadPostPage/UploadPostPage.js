@@ -1,11 +1,10 @@
-import React, { useEffect, useState, useCallback }  from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { Typography, Button, Form, message, Input, Icon } from "antd";
 import FileUpload from "../../utils/FileUpload";
-import TestPage from '../TestPage/TestPage';
+// import TestPage from '../TestPage/TestPage';
 import { TagOutlined } from "@ant-design/icons";
-import InputForm from "../TestPage/Sections/InputForm"
+import InputForm from "../TestPage/Sections/InputForm";
 import Draggable, { DraggableCore } from "react-draggable";
-
 
 import Axios from "axios";
 
@@ -34,7 +33,6 @@ function UploadPostPage(props) {
   const onTitleChange = (event) => {
     setTitleValue(event.currentTarget.value);
   };
-  
 
   const onDescriptionChange = (event) => {
     setDescriptionValue(event.currentTarget.value);
@@ -53,11 +51,9 @@ function UploadPostPage(props) {
   };
   const updatePhotoId = (id) => {
     setPhotoId(id);
-  }
+  };
   const onSubmit = (event) => {
     event.preventDefault();
-
-    
 
     if (!TitleValue || !DescriptionValue || !PriceValue || Images.length < 1) {
       return alert("fill all the fields first!");
@@ -89,13 +85,7 @@ function UploadPostPage(props) {
     //     alert("Failed to upload Post");
     //   }
     // });
-    
   };
-
-  
-
-  
-
 
   return (
     <div style={{ maxWidth: "700px", margin: "2rem auto" }}>
@@ -103,11 +93,9 @@ function UploadPostPage(props) {
         <Title level={2}> Upload Post</Title>
       </div>
 
-      
-
       <Form>
         {/* DropZone */}
-        <FileUpload refreshFunction={updateImages} refreshId ={updatePhotoId}/>
+        <FileUpload refreshFunction={updateImages} refreshId={updatePhotoId} />
         <br />
         <br />
         <label>Title</label>
@@ -123,14 +111,14 @@ function UploadPostPage(props) {
         <br />
         <br />
 
-        <Button type ="button" onClick={onSubmit}>Submit</Button>
+        <Button type="button" onClick={onSubmit}>
+          Submit
+        </Button>
       </Form>
-
     </div>
   );
 }
 
 export default UploadPostPage;
-
 
 // <TestPage photoUrl={Images[0]}/>

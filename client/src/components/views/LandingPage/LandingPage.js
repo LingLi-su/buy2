@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Axios from "axios";
 import { Icon, Col, Card, Row, Avatar } from "antd";
+import { useDispatch, useSelector } from "react-redux";
 
 import ImageSlider from "../../utils/ImageSlider";
 import CheckBox from "./Sections/CheckBox";
@@ -8,7 +9,8 @@ import { continents, price } from "./Sections/Datas";
 import RadioBox from "./Sections/RadioBox";
 import SearchFeature from "./Sections/SearchFeature";
 import LikeDislikes from "./Sections/LikeDislikes";
-
+import { loginUser } from "../../../_actions/user_actions";
+import { AUTH_USER } from "../../../_actions/types";
 const { Meta } = Card;
 
 function LandingPage() {
@@ -17,6 +19,8 @@ function LandingPage() {
   const [Limit, setLimit] = useState(8);
   const [PostSize, setPostSize] = useState();
   const [SearchTerms, setSearchTerms] = useState("");
+  const user = useSelector((state) => state.user);
+  const dispatch = useDispatch();
 
   const [Filters, setFilters] = useState({
     continents: [],
@@ -113,7 +117,6 @@ function LandingPage() {
     getPosts(variables);
   };
 
-
   const renderCards = Posts.map((post, index) => {
     return (
       <Col lg={6} md={8} xs={24}>
@@ -122,17 +125,23 @@ function LandingPage() {
           cover={
             <a href={`/post/${post._id}`}>
               {" "}
-              <ImageSlider images={post.images}  />
+              <ImageSlider images={post.images} />
             </a>
           }
         >
-          <Meta 
-            onClick={() => <a href={`/post/${post._id}`}/>}
-            title={post.title} 
-            avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
-            description={`$${post.price}`} 
+          <Meta
+            onClick={() => <a href={`/post/${post._id}`} />}
+            title={post.title}
+            avatar={
+              <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
+            }
+            description={`$${post.price}`}
           />
-          <LikeDislikes post postId={post._id} userId={localStorage.getItem('userId')}/>
+          <LikeDislikes
+            post
+            postId={post._id}
+            userId={localStorage.getItem("userId")}
+          />
         </Card>
       </Col>
     );
@@ -141,10 +150,7 @@ function LandingPage() {
   return (
     <div style={{ width: "75%", margin: "3rem auto" }}>
       <div style={{ textAlign: "center" }}>
-        <h2>
-          {" "}
-          All Posts{" "}
-        </h2>
+        <h2> All Posts </h2>
       </div>
 
       {/* Filter  */}
